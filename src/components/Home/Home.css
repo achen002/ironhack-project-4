@@ -1,0 +1,34 @@
+.home-container {
+    display: grid;
+    margin-top: 25px;
+    grid-template-columns: 100px 100px;
+    grid-template-rows: 400px 400px;
+    grid-template-areas: 
+
+    "top-left" "top-right"
+    "bottom" "bottom"
+}
+
+.weight-container {
+    /*grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2; */
+    grid-area: top-left;
+}
+
+.workout-container {
+/*grid-column-start: 2;
+grid-column-end: end;
+grid-row-start: 1;
+grid-row-end: 2; */
+grid-area: top-right;
+}
+
+.chart-container {
+grid-column-start: 1;
+grid-column-end: end;
+grid-row-start: 2;
+grid-row-end: 3;
+grid-area: bottom;
+}
