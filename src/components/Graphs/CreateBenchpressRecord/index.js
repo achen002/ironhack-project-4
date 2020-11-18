@@ -45,41 +45,44 @@ export default class index extends Component {
         //console.log('this is the props', this.props.location.info.exercise)
         return (
           <>
-            <section>
-              <h2> Enter your benchpress personal record </h2>
-                <Link to='/benchpress-records'>See previous benchpress entries</Link>
-              <form className="form-group" onSubmit={this.handleFormSubmission}>
-                <label>
-                  Weight:
-                  <input
-                  className="form-control"
-                    name='weight'
-                    type='number'
-                    placeholder='100'
-                    value={weight}
-                    onChange={this.handleInputChange}
-                  />
-                </label>
-    
-               
-                <label>
-                  Enter the Date:
-                  <input
-                  className="form-control"
-                    name='date'
-                    type='date'
-                    value={date}
-                    onChange={this.handleInputChange}
-                  />
-                </label>
-    
-    
+            <section className="card" sytle={{width :"15rem"}}>
+              <div className="card-body" >
+                    <h4> Enter your benchpress personal record </h4>
+                    <Link className="card-link" to='/benchpress-records'>See previous benchpress entries</Link>
+                  <form className="form-group" onSubmit={this.handleFormSubmission}>
+                    <label>
+                      Weight:
+                      <input
+                      className="form-control"
+                        name='weight'
+                        type='number'
+                        placeholder='100'
+                        value={weight}
+                        onChange={this.handleInputChange}
+                      />
+                    </label>
+        
+                  
+                    <label>
+                      Enter the Date:
+                      <input
+                      className="form-control"
+                        name='date'
+                        type='date'
+                        value={date}
+                        onChange={this.handleInputChange}
+                      />
+                    </label>
+        
+        
 
-    
-                <button> Input Personal record </button>
-              </form>
-    
-              {this.state.message && <div>{this.state.message}</div>}
+        
+                    <button className="btn btn-secondary"> Input Personal record </button>
+                  </form>
+        
+                  {this.state.message && <div>{this.state.message}</div>}
+              </div>
+             
             </section>
           </>
         );

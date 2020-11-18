@@ -68,7 +68,7 @@ export default class Login extends React.Component {
               />
             </label>
 
-            <button> Login </button>
+            <button className="btn btn-secondary"> Login </button>
           </form>
 
           {/* if the message is not NULL then show the message */}

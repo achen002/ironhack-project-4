@@ -20,7 +20,7 @@ export default class index extends Component {
                 <Link className="navbar-brand" to='/weight'>Check your Weight Progress</Link>
                 <Link className="navbar-brand" to='/graphs'>Track your lifting progress</Link>
                 <Link className="navbar-brand" to='/user-details'>Check your account info</Link>
-                <button onClick={this.logoutAndLiftUserState}> Logout </button>
+                <button className="btn btn-secondary" onClick={this.logoutAndLiftUserState}> Logout </button>
 
             </nav>
         )

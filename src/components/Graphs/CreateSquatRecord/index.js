@@ -45,9 +45,11 @@ export default class index extends Component {
         //console.log('this is the props', this.props.location.info.exercise)
         return (
           <>
-            <section>
-              <h2> Enter your squat personal record </h2>
-                <Link to='/squat-records'>See previous squat entries</Link>
+            <section className="card" sytle={{width :"15rem"}}>
+              <div className="card-body">
+
+              <h4> Enter your squat personal record </h4>
+                <Link className="card-link"  to='/squat-records'>See previous squat entries</Link>
               <form className="form-group" onSubmit={this.handleFormSubmission}>
                 <label>
                   Weight:
@@ -76,10 +78,13 @@ export default class index extends Component {
     
 
     
-                <button> input Personal record </button>
+                <button className="btn btn-secondary" > input Personal record </button>
               </form>
     
               {this.state.message && <div>{this.state.message}</div>}
+
+              </div>
+             
             </section>
           </>
         );

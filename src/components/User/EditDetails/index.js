@@ -16,17 +16,34 @@ export default class index extends Component {
         const { name, value } = event.target;
         this.setState({ [name]: value });
       };
+
+      handleImageChange = (event) => {
+        const { files } = event.target;
+
+        this.setState({ photo: files[0] });
+    };
     
     
       handleFormSubmission = event => {
         event.preventDefault();
     
-        const {  photo, firstname, lastname, password } = this.state
+        //const {  photo, firstname, lastname, password } = this.state
         const { username, email }= this.props.currentUser
+
+        const uploadData = new FormData();
+
+        uploadData.append("photo", this.state.photo);
+        uploadData.append("firstname", this.state.firstName);
+        uploadData.append("lastname", this.state.lastName);
+        uploadData.append("username", username);
+        uploadData.append("email", email);
+        
+        uploadData.append("password", this.state.password);
+        
 
         
         //console.log('this is in form submission',this.props.location)
-        USER_SERVICE.update(this.props.currentUser._id,{  username, email, photo, firstname, lastname, password })
+        USER_SERVICE.update(this.props.currentUser._id,uploadData)
           .then(responseFromServer => {
             const { updatedUser } = responseFromServer.data;
     
@@ -51,7 +68,7 @@ export default class index extends Component {
     
               <form className="form-group" onSubmit={this.handleFormSubmission}>
                 <label>
-                  Enter first name:
+                  Change first name:
                   <input
                   className="form-control"
                     name='firstname'
@@ -75,7 +92,7 @@ export default class index extends Component {
                 </label>
     
                 <label>
-                  Enter last name :
+                  Change last name :
                   <input
                   className="form-control"
                     name='lastname'
@@ -101,16 +118,18 @@ export default class index extends Component {
                 <label>
                   Update new photo
                   <input
+                  className="form-control"
                     name='photo'
-                    type='text'
+                    type='file'
                     placeholder={photo}
-                    value={photo}
-                    onChange={this.handleInputChange}
+                    //value={photo}
+                    onChange={this.handleImageChange}
+                    ref={(ref)=> (this.fileInput = ref)}
                   />
                 </label>
 
     
-                <button> Update User Info? </button>
+                <button className="btn btn-secondary" > Update User Info? </button>
               </form>
     
               {message && <div>{message}</div>}

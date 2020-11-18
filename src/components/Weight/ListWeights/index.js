@@ -101,14 +101,18 @@ export default class index extends Component {
         const listOfWeights = this.state.listOfWeights.map(eachWeight => {
             const theDate = new Date(eachWeight.date).toISOString().slice(0, 10).split('-').reverse().join('/')
             return (
-            <ul>
-                <li>{theDate}</li>
-                <li>{eachWeight.weight} lbs</li>
-                <li>{eachWeight.description}</li>
-                <Link to={{pathname:'/update-weight', info: {
-                    weight: eachWeight
-                }}}>Edit this Weight</Link>
-            </ul>
+            <div className="card" sytle={{width :"15rem"}}>
+                <div className="card-body">
+                    <h5 >{theDate}</h5>
+                    <h6 className="card-subtitle">{eachWeight.weight} lbs</h6>
+                    <p className="card-text">{eachWeight.description}</p>
+                    <Link className="card-link" to={{pathname:'/update-weight', info: {
+                        weight: eachWeight
+                    }}}>Edit this Weight</Link>
+
+                </div>
+                
+            </div>
             )
         })
         return (

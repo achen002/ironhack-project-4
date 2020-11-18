@@ -81,7 +81,7 @@ export default class Signup extends React.Component {
               />
             </label>
 
-            <button> Signup </button>
+            <button className="btn btn-secondary"> Signup </button>
           </form>
 
         

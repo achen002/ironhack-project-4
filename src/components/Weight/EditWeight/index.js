@@ -145,7 +145,7 @@ export default class index extends Component {
                   />
                 </label>
     
-                <button> Edit Weight </button>
+                <button className="btn btn-secondary"> Edit Weight </button>
               </form>
 
               <button onClick={() => this.deleteWeight(this.props.location.info.weight._id)}>Delete this weight entry?</button>

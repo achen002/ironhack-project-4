@@ -37,15 +37,41 @@ export default class index extends Component {
         const { username, email, photo, firstname, lastname } = this.props.currentUser
         console.log(this.props.currentUser)
         return (
-            <div>
-                <ul>
-                    <li>Username: {username}</li>
-                    <li>Email: {email}</li>
-                    <li>First Name: {firstname}</li>
-                    <li>Last Name: {lastname}</li>
-                </ul>
-                <Link className="" to='/edit-user'>Edit your account info</Link>
-                <button onClick={() => this.deleteProfile()}>Delete Profile?</button>
+            <div className="container">
+
+                <div className="row" style={{margin : "25px"}}>
+                    <div className="col-md" >
+
+                    </div>
+
+                    <div className="col card">
+                        <div >
+                            <h5>Username: </h5>{username}
+                        </div>
+                        <div>
+                        <h5>First Name:</h5> {firstname}
+                        </div>
+                        <div>
+                        <h5>Last Name:</h5> {lastname}
+                        </div>
+                        <div>
+                        <h5>Email:</h5> {email}
+                        </div>
+                        <div>
+                            <Link className="" to='/edit-user'>Edit your account info</Link>
+                        </div>
+                        <div>
+                           <button className="btn btn-secondary" onClick={() => this.deleteProfile()}>Delete Profile?</button> 
+                        </div>
+
+                    </div>
+
+                    <div className="col">
+
+                    </div>
+                
+                </div>
+               
             </div>
         )
     }

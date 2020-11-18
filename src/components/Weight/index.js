@@ -93,7 +93,7 @@ export default class index extends Component {
                   />
                 </label>
     
-                <button> Submit Weight </button>
+                <button className="btn btn-secondary"> Submit Weight </button>
               </form>
     
               {/* {message && <div>{message}</div>} */}

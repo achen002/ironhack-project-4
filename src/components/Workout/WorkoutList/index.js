@@ -60,26 +60,27 @@ export default class index extends Component {
             const theDate = new Date(eachWorkout.date).toISOString().slice(0, 10).split('-').reverse().join('/')
 
             return (
-            <ul>
-                <li>{theDate}</li>
-                <li>{eachWorkout.name}</li>
-                    {/* <li>
-                        <ul>
-                            {eachWorkout.exercises}
-                        </ul>
-                    </li> */}
-                <li>{eachWorkout.description}</li>
-                <li><Link to={{pathname:'/update-workout', info: {
+            <div className="card" sytle={{width :"15rem"}}>
+                <div className="card-body">
+                <h3>{eachWorkout.name}</h3>
+                <>{theDate}</>
+                
+                    
+                <p className="card-text">{eachWorkout.description}</p>
+                <Link  className="card-link" to={{pathname:'/update-workout', info: {
                     workout: eachWorkout
-                }}}>Edit this Workout</Link></li>
-
+                }}}>Edit this Workout</Link>
+                <br></br>
                 {/* <li><Link to={{pathname:'/add-exercise', info: {
                     workout: eachWorkout
                 }}}>Add exercises to this Workout</Link></li> */}
-                <li><Link to={{pathname:'/workout-details', info: {
+                <Link className="card-link" to={{pathname:'/workout-details', info: {
                     workout: eachWorkout
-                }}}>See details of this workout</Link></li>
-            </ul>
+                }}}>See details of this workout</Link>
+                    
+                </div>
+               
+            </div>
             )
         })
         

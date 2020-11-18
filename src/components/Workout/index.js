@@ -80,7 +80,7 @@ export default class index extends Component {
     
 
     
-                <button> Create your workout </button>
+                <button className="btn btn-secondary"> Create your workout </button>
               </form>
     
               {/* {message && <div>{message}</div>} */}

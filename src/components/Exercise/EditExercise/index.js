@@ -117,7 +117,7 @@ export default class index extends Component {
 
                
     
-                <button> Update Exercise </button>
+                <button className="btn btn-secondary"> Update Exercise </button>
               </form>
     
               {/* {message && <div>{message}</div>} */}
