@@ -100,8 +100,10 @@ export default class index extends Component {
         
         const listOfWeights = this.state.listOfWeights.map(eachWeight => {
             const theDate = new Date(eachWeight.date).toISOString().slice(0, 10).split('-').reverse().join('/')
+            console.log(eachWeight)
             return (
             <div className="card" sytle={{width :"15rem"}}>
+                {eachWeight.photo && <img src={eachWeight.photo} className="card-img-top"/>}
                 <div className="card-body">
                     <h5 >{theDate}</h5>
                     <h6 className="card-subtitle">{eachWeight.weight} lbs</h6>
@@ -116,7 +118,7 @@ export default class index extends Component {
             )
         })
         return (
-            <div>
+            <div className="container">
                 <WeightForm currentUser={this.props.currentUser} onWeightChange={this.onWeightChange}/>
                 <h3>this is the list of weights</h3>
                 <ul>

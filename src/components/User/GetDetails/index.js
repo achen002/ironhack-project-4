@@ -33,9 +33,13 @@ export default class index extends Component {
         }).catch(err => console.log(err))
     }
 
+    onUserEdit = (user) => {
+        console.log(user)
+    }
+
     render() {
         const { username, email, photo, firstname, lastname } = this.props.currentUser
-        console.log(this.props.currentUser)
+        //console.log(this.props.currentUser)
         return (
             <div className="container">
 

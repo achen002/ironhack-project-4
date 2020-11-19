@@ -53,9 +53,9 @@ export default class index extends Component {
         uploadData.append("weight", this.state.weight);
         uploadData.append("date", this.state.date);
         uploadData.append("description", this.state.description);
-          console.log('this is the upload data', uploadData)
+          //console.log('this is the upload data', uploadData)
         axios
-            .post(`http://localhost:3001/weight/${weightId}/update`, uploadData, {
+            .post(`${process.env.REACT_APP_SERVER_POINT}/weight/${weightId}/update`, uploadData, {
                  headers: { "Content-Type": "multipart/form-data" },
                 withCredentials: true,
             })

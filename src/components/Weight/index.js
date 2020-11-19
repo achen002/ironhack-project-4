@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import WEIGHT_SERVICE from '../../services/WeightService';
+import axios from 'axios'
 
 export default class index extends Component {
     state = {
         weight: '',
         date: '',
-        picture: '',
+        photo: '',
         description: '',
         message: null
       };
@@ -14,6 +15,12 @@ export default class index extends Component {
         const { name, value } = event.target;
         this.setState({ [name]: value });
       };
+
+      handleImageChange = (event) => {
+        const { files } = event.target;
+
+        this.setState({ photo: files[0] });
+    };
     
     
       handleFormSubmission = event => {
@@ -21,28 +28,61 @@ export default class index extends Component {
     
         const { weight, date, picture, description, } = this.state;
         const userId = this.props.currentUser._id;
-        console.log(userId)
+        
     
-        WEIGHT_SERVICE.createWeight(userId,{ weight, date, picture, description })
-          .then(responseFromServer => {
-            const { weight } = responseFromServer.data;
+        // WEIGHT_SERVICE.createWeight(userId,{ weight, date, picture, description })
+        //   .then(responseFromServer => {
+        //     const { weight } = responseFromServer.data;
             
-            this.props.onWeightChange(weight);
-            this.props.history.push('/');
-          })
-          .catch(err => {
-            if (err.response && err.response.data) {
-              return this.setState({ message: err.response.data.message });
-            }
-          });
+        //     this.props.onWeightChange(weight);
+        //     this.props.history.push('/');
+        //   })
+        //   .catch(err => {
+        //     if (err.response && err.response.data) {
+        //       return this.setState({ message: err.response.data.message });
+        //     }
+        //   });
+
+        const uploadData = new FormData();
+
+        uploadData.append("photo", this.state.photo);
+        uploadData.append("weight", this.state.weight);
+        uploadData.append("date", this.state.date);
+        uploadData.append("description", this.state.description);
+          //console.log('this is the upload data', uploadData)
+        axios
+            .post(`${process.env.REACT_APP_SERVER_POINT}/weight/${userId}`, uploadData, {
+                 headers: { "Content-Type": "multipart/form-data" },
+                withCredentials: true,
+            })
+            .then((responseFromServer) => {
+              const { weight } = responseFromServer.data;
+             // console.log(weight)
+                this.props.onWeightChange(weight);
+                   this.props.history.push('/');
+                this.fileInput.value = "";
+
+                // this.setState({
+                //     title: "",
+                //     price: 0,
+                //     inStock: false,
+                //     description: "",
+                // });
+            })
+            .catch(err => {
+                  if (err.response && err.response.data) {
+                    return this.setState({ message: err.response.data.message });
+                  }
+                });
+
       };
     
       render() {
-        const { weight, date, picture, description, } = this.state;
+        const { weight, date, photo, description, } = this.state;
         return (
           <>
             <section>
-              <h2> Create new Weight </h2>
+              <h2> Enter your Weight </h2>
     
               <form className="form-group" onSubmit={this.handleFormSubmission}>
                 <label>
@@ -85,11 +125,11 @@ export default class index extends Component {
                   Upload a picture:
                   <input
                   className="form-control"
-                    name='picture'
-                    type='text'
+                    name='photo'
+                    type='file'
                     placeholder='www.cool-image.com'
-                    value={picture}
-                    onChange={this.handleInputChange}
+                    //value={picture}
+                    onChange={this.handleImageChange}
                   />
                 </label>
     

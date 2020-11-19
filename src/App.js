@@ -2,7 +2,7 @@ import React from 'react'
 import logo from './logo.svg';
 import './App.css';
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 // import AUTH_SERVICE from './services/AuthService';
 // import WEIGHT_SERVICE from './services/WeightService';
@@ -21,6 +21,7 @@ import WorkoutList from './components/Workout/WorkoutList'
 import UpdateWorkout from './components/Workout/EditWorkout'
 import Navbar from './components/NavBar'
 import ProtectedRoute from './components/ProtectedRoute'
+import LoginRoute from './components/LoginRoute'
 import Home from './components/Home'
 import Graphs from './components/Graphs'
 import SquatRecords from './components/Graphs/EditSquatRecord'
@@ -55,14 +56,21 @@ updateUser = user => {
     //console.log(this.state.listOfWeights)
       return (
       <div className="container-fluid">
-        <h1>The current user is{this.state.currentUser && this.state.currentUser.username}</h1>
+        <h1>Iron fitness</h1>
         <BrowserRouter>
         <nav>
         <Navbar currentUser={this.state.currentUser} onUserChange={this.updateUser} />
         </nav>
         <Switch>
-        <Route exact path='/' render={props => <LandingPage  onUserChange={this.updateUser} />} />
+        <Route exact path='/' render={props => <LandingPage  onUserChange={this.updateUser } /> } />
+        {/* <Route exact path='/' render={props => {this.state.currentUser ? <Home {...props} currentUser={this.state.currentUser}/>:<LandingPage  onUserChange={this.updateUser } />}  } /> */}
 
+        {/* <LoginRoute
+              path='/'
+              authorized={this.state.currentUser}
+              redirect={'/home'}
+              render={props => <LandingPage onUserChange={this.updateUser} />}
+            /> */}
 
         <ProtectedRoute
               path='/user-details'

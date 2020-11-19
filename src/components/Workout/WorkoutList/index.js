@@ -87,10 +87,10 @@ export default class index extends Component {
         return (
             <div className="container">
                 <WorkoutForm currentUser={this.props.currentUser} onWorkoutChange={this.onWorkoutChange}/>
-                <h3>this is the list of workouts</h3>
-                <ul>
-                    <li className="image-list">{listOfWorkouts}</li>
-                </ul>
+               
+                
+                    <div className="image-list">{listOfWorkouts}</div>
+                
             </div>
         )
     }

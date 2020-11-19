@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import USER_SERVICE from '../../../services/UserService';
+import axios from 'axios'
 
 export default class index extends Component {
     state = {
-        firstName : '',
-        lastName : '',
-        userName : '',
+        firstname : '',
+        lastname : '',
+        username : '',
         email: '',
         photo : '',
         password: '',
@@ -33,32 +34,45 @@ export default class index extends Component {
         const uploadData = new FormData();
 
         uploadData.append("photo", this.state.photo);
-        uploadData.append("firstname", this.state.firstName);
-        uploadData.append("lastname", this.state.lastName);
+        uploadData.append("firstname", this.state.firstname);
+        uploadData.append("lastname", this.state.lastname);
         uploadData.append("username", username);
         uploadData.append("email", email);
         
         uploadData.append("password", this.state.password);
         
+        axios
+        .post(`${process.env.REACT_APP_SERVER_POINT}/user/${this.props.currentUser._id}/update`, uploadData, {
+             headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: true,
+        })
+        .then((responseFromServer) => {
+          const { updatedUser } = responseFromServer.data;
+          console.log('this is after the updated user', updatedUser)
+            this.props.onUserEdit(updatedUser);
+               this.props.history.push('/');
+            this.fileInput.value = "";
 
+            // this.setState({
+            //     title: "",
+            //     price: 0,
+            //     inStock: false,
+            //     description: "",
+            // });
+        })
+        .catch(err => {
+              if (err.response && err.response.data) {
+                return this.setState({ message: err.response.data.message });
+              }
+            });
         
-        //console.log('this is in form submission',this.props.location)
-        USER_SERVICE.update(this.props.currentUser._id,uploadData)
-          .then(responseFromServer => {
-            const { updatedUser } = responseFromServer.data;
-    
-            this.props.onUserChange(updatedUser);
-            this.props.history.push('/');
-          })
-          .catch(err => {
-            if (err.response && err.response.data) {
-              return this.setState({ message: err.response.data.message });
-            }
-          });
+
+
       };
     
       render() {
-            //console.log(this.props.currentUser)
+          //console.log('this is in the edit user')
+            //console.log('this is the current user', this.props.currentUser)
         const {  photo, firstname, lastname, password, message} = this.state
         //console.log('this is the props', this.props.location.info.exercise)
         return (

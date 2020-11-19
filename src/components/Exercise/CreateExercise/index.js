@@ -45,13 +45,14 @@ export default class index extends Component {
         console.log('this is the props', this.props.location.info.workout._id)
         return (
           <>
-            <section>
+            <section className="form-group">
               <h2> Create new Exercise </h2>
     
               <form onSubmit={this.handleFormSubmission}>
                 <label>
                   Enter name of exercise:
                   <input
+                  className="form-control"
                     name='name'
                     type='text'
                     placeholder='Squat'
@@ -73,6 +74,7 @@ export default class index extends Component {
                 <label>
                   Description:
                   <input
+                  className="form-control"
                     name='description'
                     type='text'
                     placeholder='I did a'
@@ -85,6 +87,7 @@ export default class index extends Component {
                 <label>
                   Sets:
                   <input
+                  className="form-control"
                     name='sets'
                     type='number'
                     placeholder='4'
@@ -96,6 +99,7 @@ export default class index extends Component {
                 <label>
                   Reps:
                   <input
+                  className="form-control"
                     name='reps'
                     type='number'
                     placeholder='12'
@@ -107,6 +111,7 @@ export default class index extends Component {
                 <label>
                   Weight:
                   <input
+                  className="form-control"
                     name='weight'
                     type='number'
                     placeholder='100'
