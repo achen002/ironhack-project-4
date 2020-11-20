@@ -4,7 +4,7 @@ import './App.css';
 
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-// import AUTH_SERVICE from './services/AuthService';
+import AUTH_SERVICE from './services/AuthService';
 // import WEIGHT_SERVICE from './services/WeightService';
 // import WORKOUT_SERVICE from './services/WorkoutService';
 import UserDetails from './components/User/GetDetails'
@@ -34,18 +34,20 @@ state = {
   listOfWorkouts: []
 };
 
-// componentDidMount = () => {
+componentDidMount = () => {
   
-//     Promise.all([WEIGHT_SERVICE.getAllWeights(this.state.currentUser._id)])
-//       .then(responseFromServer => {
-//         const {weights} = responseFromServer[0].data;
-//         console.log('this is in did mount')
-//         this.setState({listOfWeights: weights})
-//       }).catch(err => console.log(err));
-
+    AUTH_SERVICE.getAuthenticatedUser()
+      .then(responseFromServer => {
+        console.log(responseFromServer.data)
+        const { user } = responseFromServer.data
+        this.setState({
+          currentUser : user
+        })
+      }).catch(err => console.log(err));
+    
   
   
-// }
+}
 
 updateUser = user => {
   this.setState({currentUser: user})
@@ -62,7 +64,7 @@ updateUser = user => {
         <Navbar currentUser={this.state.currentUser} onUserChange={this.updateUser} />
         </nav>
         <Switch>
-        <Route exact path='/' render={props => <LandingPage  onUserChange={this.updateUser } /> } />
+        <Route exact path='/' render={props => <LandingPage {...props}  onUserChange={this.updateUser } /> } />
         {/* <Route exact path='/' render={props => {this.state.currentUser ? <Home {...props} currentUser={this.state.currentUser}/>:<LandingPage  onUserChange={this.updateUser } />}  } /> */}
 
         {/* <LoginRoute

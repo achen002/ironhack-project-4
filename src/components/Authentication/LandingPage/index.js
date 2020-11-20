@@ -6,16 +6,16 @@ export default class index extends Component {
 
 
     render() {
-        //console.log(this.props)
+        console.log('this is the landing page', this.props)
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-sm">
-                        <Signup onUserChange={this.props.onUserChange}/>
+                        <Signup {...this.props} onUserChange={this.props.onUserChange}/>
                     </div>
                     
                     <div className="col-sm" >
-                        <Login onUserChange={this.props.onUserChange}/>
+                        <Login {...this.props} onUserChange={this.props.onUserChange}/>
                     </div>
 
                 </div>

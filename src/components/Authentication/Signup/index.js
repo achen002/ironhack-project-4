@@ -29,7 +29,7 @@ export default class Signup extends React.Component {
         this.props.onUserChange(user);
 
         // Redirect user to home page after successful sign up
-        this.props.history.push('/');
+        this.props.history.push('/home');
       })
       .catch(err => {
         if (err.response && err.response.data) {

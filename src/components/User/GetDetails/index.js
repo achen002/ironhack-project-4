@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import USER_SERVICE from '../../../services/UserService'
 import { Link } from 'react-router-dom'
+import EditDetails from '../EditDetails'
 export default class index extends Component {
     state = {
         firstName : '',
@@ -33,9 +34,12 @@ export default class index extends Component {
         }).catch(err => console.log(err))
     }
 
-    onUserEdit = (user) => {
-        console.log(user)
-    }
+    // onUserEdit = (user) => {
+    //     console.log(user)
+    // }
+    // redirectToEdit = () => {
+    //     this.props.history.pu
+    // }
 
     render() {
         const { username, email, photo, firstname, lastname } = this.props.currentUser
@@ -63,6 +67,8 @@ export default class index extends Component {
                         </div>
                         <div>
                             <Link className="" to='/edit-user'>Edit your account info</Link>
+                            {/* <button className="btn btn-secondary" onClick={() => this.redirectToEdit()}>Edit Profile</button>  */}
+                            
                         </div>
                         <div>
                            <button className="btn btn-secondary" onClick={() => this.deleteProfile()}>Delete Profile?</button> 
